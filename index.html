@@ -17,21 +17,15 @@
     <header>
       <h1 itemprop="headline">Robotic Hoover</h1>
     </header>
-    <main itemprop="articleBody">
-        <section id="grid">
+    <main>
         </section>
-        <section id="inputs">
-            <form action="/action_page.php" id="usrform">
-                Name: <input type="text" name="usrname">
-                <input type="submit">
-              </form>
-              <br>
-              <textarea rows="4" cols="50" name="comment" form="usrform">
-              Enter text here...</textarea>
-              
-              <p>The text area above is outside the form element, but should still be a part of the form.</p>
+            <p>Below is a visual representation of the room after the vacuum has run, with grey indicating the position of the hoover and brown indicating any remaining dirt</p>
+            <article id="grid">Please ensure Javascript is enabled</article>
         </section>
-        <section id="results">
+        <br/>
+        <section>
+            Below are the results in the format specified (ending X and Y position of the hoover on the first line, followed by the amount of dirt picked up total).:
+            <p id="results"></p>
         </section>
     </main>
   </body>

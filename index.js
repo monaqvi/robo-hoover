@@ -84,7 +84,7 @@ const roboHoover = async function() {
     };
 };
 
-function gridSVG(data, hoover) {
+const gridSVG = function(data, hoover) {
 	var width = 50;
 	var height = 50;
     
@@ -99,31 +99,40 @@ function gridSVG(data, hoover) {
 
     console.log(gridData);
 
-    var gridSVG = d3.select("main")
-        .append("svg")
-        .attr("width", width * (gridData[0].length + 1) + 'px')
-        .attr("height", height * (gridData.length + 1) + 'px');
+    var gridSVG = d3.select('#grid')
+        .append('svg')
+        .attr('width', width * (gridData[0].length + 1) + 'px')
+        .attr('height', height * (gridData.length + 1) + 'px');
 	
-    var row = gridSVG.selectAll(".row")
+    var row = gridSVG.selectAll('.row')
         .data(gridData.reverse())
-        .enter().append("g")
-        .attr("class", "row");
+        .enter().append('g')
+        .attr('class', 'row');
         
-    var column = row.selectAll(".square")
+    var column = row.selectAll('.square')
         .data(d => d)
-        .enter().append("rect")
-        .attr("class","square")
-        .attr("x", d => d.xpos)
-        .attr("y", d => d.ypos)
-        .attr("width", width)
-        .attr("height", height)
-        .style("fill", d => {
-            if (d.x === hoover.x && d.y === hoover.y) return "grey";
-            if (d.dirt > 0) return "brown";
-            return "white";
+        .enter().append('rect')
+        .attr('class','square')
+        .attr('x', d => d.xpos)
+        .attr('y', d => d.ypos)
+        .attr('width', width)
+        .attr('height', height)
+        .style('fill', d => {
+            if (d.x === hoover.x && d.y === hoover.y) return 'grey';
+            if (d.dirt > 0) return 'brown';
+            return 'white';
         })
-        .style("stroke", "#222");
-}
+        .style('stroke', '#222');
+};
 
-const { grid, hoover } = await roboHoover();
-gridSVG(grid, hoover);
+window.onload = async function() {
+    // run hoover program
+    const { grid, hoover } = await roboHoover();
+
+    // create ui from outputs of roboHoover
+    document.getElementById('results').innerText = `${hoover.x} ${hoover.y}\n${hoover.totalDirt}`;
+    document.getElementById('grid').innerText = '';
+    gridSVG(grid, hoover);
+};
+
+
