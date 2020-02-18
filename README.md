@@ -10,6 +10,8 @@ This is a program that navigates a imaginary robotic hoover (much like a [Roomba
 * an initial hoover position (X and Y coordinates like patches of dirt)
 * driving instructions (as [cardinal directions](https://en.wikipedia.org/wiki/Cardinal_direction) where e.g. N and E mean "go north" and "go east" respectively) 
 
+The program also uses [D3.js](https://d3js.org/) to display a quick visualization.
+
 ## Goal
 
 The goal of the program is to take the room dimensions, the locations of the dirt patches, the hoover location and the driving instructions as input and to then output the following:
@@ -62,6 +64,8 @@ Example (matching the input above):
 1 3
 1
 ```
+
+
 
 ## Constraints
 
