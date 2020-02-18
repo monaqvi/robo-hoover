@@ -1,6 +1,42 @@
 'use strict'
 
 (async function roboHoover() {
+    class Hoover {
+        constructor(x = 0, y = 0) {
+            if (x < 0 || x > gridX || y < 0 || y > gridY) throw new Error('Not a valid starting position');
+
+            this.x = x;
+            this.y = y;
+            this.totalDirt = hooverDirt(x, y);
+
+            this.move = function(direction) {
+                const currentX = this.x;
+                const currentY = this.y;
+
+                if (direction === 'N' && currentY < gridY) this.y = currentY + 1;
+                if (direction === 'S' && currentY > 0) this.y = currentY - 1;
+
+                if (direction === 'E' && currentX < gridX) this.x = currentX + 1;
+                if (direction === 'W' && currentY > 0) this.x = currentX - 1; 
+
+                this.totalDirt = this.totalDirt + hooverDirt([this.x], [this.y]);
+                return this;
+            }
+
+            function hooverDirt(x, y) {
+                const newDirt = grid[y][x].dirt;
+                grid[y][x].dirt = 0;
+                return newDirt;
+            }
+        }
+    }
+
+    class Coordinate {
+        constructor() { 
+            this.dirt = 0;
+        }
+    }
+
     // read inputs
     const input = await window.fetch('./input.txt')
                               .then(response => response.text());
@@ -40,41 +76,4 @@
     // log and return outputs
     console.log(`${hoover.x} ${hoover.y}\n${hoover.totalDirt}`);
     return hoover;
-    
-    class Hoover {
-        constructor(x = 0, y = 0) {
-            if (x < 0 || x > gridX || y < 0 || y > gridY) throw new Error('Not a valid starting position');
-
-            this.x = x;
-            this.y = y;
-            this.totalDirt = hooverDirt(x, y);
-
-            this.move = function(direction) {
-                const currentX = this.x;
-                const currentY = this.y;
-
-                if (direction === 'N' && currentY < gridY) this.y = currentY + 1;
-                if (direction === 'S' && currentY > 0) this.y = currentY - 1;
-
-                if (direction === 'E' && currentX < gridX) this.x = currentX + 1;
-                if (direction === 'W' && currentY > 0) this.x = currentX - 1; 
-
-                this.totalDirt = this.totalDirt + hooverDirt([this.x], [this.y]);
-                return this;
-            }
-
-            function hooverDirt(x, y) {
-                const newDirt = grid[y][x].dirt;
-                grid[y][x].dirt = 0;
-                return newDirt;
-            }
-        }
-    }
-
-    class Coordinate {
-        constructor() { 
-            this.dirt = 0;
-        }
-    }
-
 })();
