@@ -35,11 +35,25 @@
                               });
 
     // run through all directions and output results
+
+    
     class Hoover {
-        constructor(x, y) { 
+        constructor(x = 0, y = 0) {
+            if (x < 0 || x > gridX || y < 0 || y > gridY) throw new ValidationError('Not a valid starting position');
+
             this.x = x;
             this.y = y;
             this.dirt = 0;
+            this.move = function(direction) {
+                const currentX = this.x;
+                const currentY = this.y;
+
+                if (direction === 'N' && currentY < gridY) this.y = currentY + 1;
+                if (direction === 'S' && currentY > 0) this.y = currentY - 1;
+
+                if (direction === 'E' && currentX < gridX) this.x = currentX + 1;
+                if (direction === 'W' && currentY > 0) this.x = currentX - 1; 
+            }
         }
     }
 
