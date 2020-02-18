@@ -18,11 +18,24 @@
       <h1 itemprop="headline">Robotic Hoover</h1>
     </header>
     <main itemprop="articleBody">
-        <section class="inputs">
+        <section id="grid">
         </section>
-        <section class="results">
+        <section id="inputs">
+            <form action="/action_page.php" id="usrform">
+                Name: <input type="text" name="usrname">
+                <input type="submit">
+              </form>
+              <br>
+              <textarea rows="4" cols="50" name="comment" form="usrform">
+              Enter text here...</textarea>
+              
+              <p>The text area above is outside the form element, but should still be a part of the form.</p>
+        </section>
+        <section id="results">
         </section>
     </main>
   </body>
   <!-- SCRIPTS -->
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="./index.js"></script>
 </html>

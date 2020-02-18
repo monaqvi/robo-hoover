@@ -1,6 +1,6 @@
-(async function roboHoover() {
+const roboHoover = async function() {
     'use strict'
-    
+
     class Hoover {
         constructor(x = 0, y = 0) {
             if (x < 0 || x > gridX || y < 0 || y > gridY) throw new Error('Not a valid starting position');
@@ -32,8 +32,10 @@
     }
 
     class Coordinate {
-        constructor() { 
+        constructor(x, y) { 
             this.dirt = 0;
+            this.x = x;
+            this.y = y;
         }
     }
 
@@ -53,7 +55,7 @@
     const emptyGrid = new Array(gridY).fill(null)
                              .map(() => new Array(gridX).fill(null));
 
-    const grid = emptyGrid.map((row, y) => row.map((column, x) => new Coordinate()));
+    const grid = emptyGrid.map((row, y) => row.map((cell, x) => new Coordinate(x, y)));
 
     // mark dirt patches
     const dirtPatches = coordinates.slice(2)
@@ -75,5 +77,53 @@
 
     // log and return outputs
     console.log(`${hoover.x} ${hoover.y}\n${hoover.totalDirt}`);
-    return hoover;
-})();
+    return {
+        grid,
+        hoover,
+        path,
+    };
+};
+
+function gridSVG(data, hoover) {
+	var width = 50;
+	var height = 50;
+    
+    const gridData = data.reverse()
+                         .map((row, y) => row
+                         .map((cell, x) => Object.assign({}, cell, 
+                            {
+                             xpos: width * x + 1,
+                             ypos: height * y + 1
+                            }
+                         )));
+
+    console.log(gridData);
+
+    var gridSVG = d3.select("main")
+        .append("svg")
+        .attr("width", width * (gridData[0].length + 1) + 'px')
+        .attr("height", height * (gridData.length + 1) + 'px');
+	
+    var row = gridSVG.selectAll(".row")
+        .data(gridData.reverse())
+        .enter().append("g")
+        .attr("class", "row");
+        
+    var column = row.selectAll(".square")
+        .data(d => d)
+        .enter().append("rect")
+        .attr("class","square")
+        .attr("x", d => d.xpos)
+        .attr("y", d => d.ypos)
+        .attr("width", width)
+        .attr("height", height)
+        .style("fill", d => {
+            if (d.x === hoover.x && d.y === hoover.y) return "grey";
+            if (d.dirt > 0) return "brown";
+            return "white";
+        })
+        .style("stroke", "#222");
+}
+
+const { grid, hoover } = await roboHoover();
+gridSVG(grid, hoover);
