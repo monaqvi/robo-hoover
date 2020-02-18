@@ -11,8 +11,6 @@ const gridSVG = function(data, hoover) {
                             }
                          )));
 
-    console.log(gridData);
-
     var gridSVG = d3.select('#grid')
         .append('svg')
         .attr('width', width * (gridData[0].length + 1) + 'px')
