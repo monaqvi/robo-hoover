@@ -17,6 +17,16 @@ The goal of the program is to take the room dimensions, the locations of the dir
 * The final hoover position (X, Y)
 * The number of patches of dirt the robot cleaned up
 
+## Deployment
+
+This program runs in the browser. The easiest way to run it is to clone the repository (whether through git or by downloading the zip file), and running a static web server in the downloaded folder. On Mac OS, the easiest way to do this is by running the following command while inside the folder and navigating:
+```
+python -m SimpleHTTPServer 8000
+```
+Then, navigate to localhost:8000 in a modern browser (preferably Chrome)
+
+A hosted version of this site, run with the sample inputs provided (see below) can be found at: https://github.com/monaqvi/robo-hoover
+
 ## Input
 
 Program input will be received in a file with the format described here. You can process it however you like.
