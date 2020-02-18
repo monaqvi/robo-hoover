@@ -1,6 +1,6 @@
-const roboHoover = async function() {
-    'use strict'
+'use strict'
 
+const roboHoover = async function() {
     class Hoover {
         constructor(x = 0, y = 0) {
             if (x < 0 || x > gridX || y < 0 || y > gridY) throw new Error('Not a valid starting position');

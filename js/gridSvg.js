@@ -1,3 +1,5 @@
+'use strict'
+
 const gridSVG = function(data, hoover) {
 	var width = 50;
 	var height = 50;

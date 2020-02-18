@@ -1,3 +1,5 @@
+'use strict'
+
 window.onload = async function() {
     // run hoover program
     const { grid, hoover } = await roboHoover();
