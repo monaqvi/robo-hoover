@@ -12,8 +12,10 @@
 
     const gridX = points[0][0];
     const gridY = points[0][1];
-    const grid = Array(gridX).fill(null)
-                             .map(() => Array(gridY).fill(null));
+    const emptyGrid = Array(gridY).fill(null)
+                             .map(() => Array(gridX).fill(null));
+
+    const grid = emptyGrid.map((row, y) => row.map((column, x) => new Point()));
 
 
 
@@ -25,5 +27,10 @@
     // pre-process grid
 
     // run through all directions and output results
+    class Point {
+        constructor() { 
+            this.dirt = 0;
+        }
+    }
 
 })();
