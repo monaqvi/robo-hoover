@@ -43,7 +43,7 @@
     
     class Hoover {
         constructor(x = 0, y = 0) {
-            if (x < 0 || x > gridX || y < 0 || y > gridY) throw new ValidationError('Not a valid starting position');
+            if (x < 0 || x > gridX || y < 0 || y > gridY) throw new Error('Not a valid starting position');
 
             this.x = x;
             this.y = y;
