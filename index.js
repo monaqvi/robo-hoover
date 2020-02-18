@@ -36,6 +36,10 @@
 
     // run through all directions and keep a record of the path taken
     const path = movements.split('').map(direction => Object.assign({}, hoover.move(direction)));
+
+    // log and return outputs
+    console.log(`${hoover.x} ${hoover.y}\n${hoover.totalDirt}`);
+    return hoover;
     
     class Hoover {
         constructor(x = 0, y = 0) {
@@ -43,7 +47,7 @@
 
             this.x = x;
             this.y = y;
-            this.dirt = grid[this.y][this.x].dirt;
+            this.totalDirt = hooverDirt(x, y);
 
             this.move = function(direction) {
                 const currentX = this.x;
@@ -55,8 +59,14 @@
                 if (direction === 'E' && currentX < gridX) this.x = currentX + 1;
                 if (direction === 'W' && currentY > 0) this.x = currentX - 1; 
 
-                this.dirt = this.dirt + grid[this.y][this.x].dirt;
+                this.totalDirt = this.totalDirt + hooverDirt([this.x], [this.y]);
                 return this;
+            }
+
+            function hooverDirt(x, y) {
+                const newDirt = grid[y][x].dirt;
+                grid[y][x].dirt = 0;
+                return newDirt;
             }
         }
     }
