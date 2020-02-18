@@ -1,7 +1,6 @@
 'use strict'
 
-// wrap in IIFE
-
+(function roboHoover() {
     // init variables
 
     // read inputs
@@ -10,4 +9,4 @@
 
     // run through all directions and output results
 
-
+})();
