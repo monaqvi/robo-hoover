@@ -21,7 +21,7 @@ The goal of the program is to take the room dimensions, the locations of the dir
 
 ## Deployment
 
-This program runs in the browser. The easiest way to run it is to clone the repository (whether through git or by downloading the zip file), and running a static web server in the downloaded folder. On Mac OS, the easiest way to do this is by running the following command while inside the folder and navigating:
+This program runs in the browser. The easiest way to run it is to clone the repository (whether through git or by downloading the zip file), and running a static web server in the downloaded folder. On Mac OS, the easiest way to do this is by running the following command while inside the folder:
 ```
 python -m SimpleHTTPServer 8000
 ```
