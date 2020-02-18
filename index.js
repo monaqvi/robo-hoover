@@ -8,19 +8,19 @@
     // split inputs
     const inputs = input.split('\n');
     const movements = inputs.slice(-1)[0];
-    const points = inputs.slice(0, -1)
+    const coordinates = inputs.slice(0, -1)
                              .map(line => line.split(' ').map(point => parseInt(point)));
 
     // create grid
-    const gridX = points[0][0];
-    const gridY = points[0][1];
+    const gridX = coordinates[0][0];
+    const gridY = coordinates[0][1];
     const emptyGrid = new Array(gridY).fill(null)
                              .map(() => new Array(gridX).fill(null));
 
-    const grid = emptyGrid.map((row, y) => row.map((column, x) => new Point()));
+    const grid = emptyGrid.map((row, y) => row.map((column, x) => new Coordinate()));
 
     // mark dirt patches
-    const dirtPatches = points.slice(2)
+    const dirtPatches = coordinates.slice(2)
                               .map(dirtPatchCoordinates => {
                                   const dirtVal = 1;
                                   const x = dirtPatchCoordinates[0];
@@ -31,7 +31,7 @@
                               });
 
     // initiate hoover
-    const hooverStart = points[1];
+    const hooverStart = coordinates[1];
     const hoover = new Hoover(hooverStart[0], hooverStart[1]);
 
     // run through all directions and keep a record of the path taken
@@ -71,7 +71,7 @@
         }
     }
 
-    class Point {
+    class Coordinate {
         constructor() { 
             this.dirt = 0;
         }
