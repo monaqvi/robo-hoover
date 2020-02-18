@@ -1,4 +1,4 @@
-'use script'
+'use strict'
 
 // wrap in IIFE
 
