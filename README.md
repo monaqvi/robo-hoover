@@ -25,7 +25,7 @@ python -m SimpleHTTPServer 8000
 ```
 Then, navigate to localhost:8000 in a modern browser (preferably Chrome)
 
-A hosted version of this site, run with the sample inputs provided (see below) can be found at: https://github.com/monaqvi/robo-hoover
+A hosted version of this site, run with the sample inputs provided (see below) can be found at: [Robo-Hoover](https://monaqvi.github.io/projects/robo-hoover/)
 
 ## Input
 
